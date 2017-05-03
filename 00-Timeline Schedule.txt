@@ -1,0 +1,87 @@
+
+
+Timeline:
+	Weekend 8 (04-22)
+		- Get image menusystem started
+			.) Review the opencv highgui as a possible method to display the images as well
+			   as creating to controls we need. May work better than rqt.
+			.) Some good data here: http://docs.opencv.org/2.4.13.2/doc/tutorials/core/mat_the_basic_image_container/mat_the_basic_image_container.html?highlight=jpeg
+		-) Get the motion system controller started.
+			.) Reeview the stuff from the qualifing round and see what we can reuse.
+			.) Develop a method to encode walking plans.
+		- Test and see what we can do with PCL point cloud.
+			.) Look at 4.3 convert_pointcloud_to_image on page http://wiki.ros.org/pcl_ros?distro=indigo .
+			   Also look here: http://wiki.ros.org/pcl_ros/Tutorials/CloudToImage
+			   and here: http://docs.ros.org/api/sensor_msgs/html/msg/PointCloud2.html
+			.) The hope is that we can create one or more images that will
+			   represent the world that the robot operates in that is scaled
+			   to the pixel. Then we can use mouse click on the image to get
+			   a location in the workspace for doing numeruous operations.
+				*) Location and rotation for the interactive objects
+				*) Walking commands for the robot to change locations.
+				*) Closeup locations of the wheels, solarpanel, and tools.
+			.) Also want to be able to transform a point cloud to change the image
+			   of that cloud. Specifically what to rotate the satellite control
+			   panel to show a front on view of the panel. Then with this view
+			   we should be able to reposition the control panel by sending the 
+			   the location of the center of the two wheels. We should also be able
+			   to set the initial angle to each wheels knob that the robot will
+			   use to turn the wheel.
+			.) Also test how we are going to get the image across the wire. 
+				*) test using the jpeg compression format. http://docs.opencv.org/2.4.13.2/search.html?q=jpeg&check_keywords=yes&area=default
+           Results of Weekend 8
+		-) Processing point cloud is doable without the pcl overhead. May still use some of it, but do not plan to at this time.
+		-) I was able to create the mmr_map mars node and read point cloud messages. I was able to transform those points into an
+		   an image and because the points included the RGB values I used those for each pixel instead of the heigth values.
+		-) I got started, and will need to fininsh, a more robust system to create many image snippets from each point
+		   cloud received. Each snippet can have a different point range, image resolution, and AOI Area Of Interest
+		-) I was also able to test different compression options and have concluded that compressing each image into a
+		   jpeg format will be the best. JPEG gives the ability to compress at different levels and works about the same
+		   for grayscale and color images. Will probable us color.
+		-) Did not work on a menu system. I am now hoping to use the opencv highgui routines. Will need to test
+
+	Weekend 7 (04-29)
+		- Finish image menusystem
+		- Start writing the motion controller:
+			.) Ability to walk along a vector for a given distance.
+			   The system should automatically rotate to the vector direction
+			   then walk the given distance.
+			.) Need the ability to backup.
+			.) Need a command interface
+	   Update Weekend 7:
+		-) Need to finish the point cloud system.
+			.) Define a message type and get the images moving to the OCU for display.
+			.) Finish the abiltiy to process the point cloud into multiple images.
+			.) Define the topics needed to transfer the images.
+		-) Need the ability to broadcast tf messages of key elements that the robot is going to need to interact with.
+			.) Need a way to identify where something is supposed to be and where it is. Then adjust the tf message
+			   to get them aligned. Once aligned then continue broadcasting the tf until know longer needed.
+
+	Weekend 6 (05-06)
+		- Finish the motion controller
+			.) Add ability to climb stairs.
+		- Using the image menusystem, Write the command control system. This system
+		  will define all the commands from the OCU to the field computer.
+
+	Weekend 5 (05-13)
+		- Start the object placement system. This will be the ability to send a command 
+		  to the robot to give it a hint to where the interactive object is located. The
+		  robot will then make final adjustment and start to broadcast the TF root location
+		  of the object.
+			.) setup the static tf locations for each interactive object.
+			.) create scaled images of the objects to use in the OCU placement routines.
+
+	Weekend 4 (05-20)
+		- Start the manipulator nodes. These node(s) will be used to control the robots
+		  arms. The intent is to use tf transforms between the robot hands that the discovered
+		  interactive coommponents of the interactive objects in the robots world.
+		- Finish the object placement and TF broadcasters.
+
+	Weekend 3 (05-27)
+		- Finish any incomplete systems and start testing.
+
+	Weekend 2 (06-03)
+		- More testing
+
+	Weekend 1 (06-10)
+		- Final preparations to compitition starting on the 13
