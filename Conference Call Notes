@@ -1,0 +1,7 @@
+Questions for Conference Call:
+•	Will the competition be monitored or will we just login anything during the four days and execute our 5 runs? Will it be open for runs 24 hours a day?
+•	What do we do if we have a problem with the simulation?
+•	Do you know what the expected real time factor is going to be?
+•	The bandwidth limits. Are those in ROS time or Wall Clock time? Same question for the latency time.
+•	Can we get some example tc commands that we can use to test the latency and bandwidth limits?
+•	There are several topics that do not provide data. Can we get a list of topics that will be providing good data for us to use? Or a list of topics that we should not use or that may not be working at the competition?  
